@@ -9,7 +9,7 @@ function Header (){
     <Navbar className="navbar" bg="dark" variant="dark">
     <Navbar.Brand><Link to="/"><img src="images/logo.jpeg" className="logo-img"/></Link> Mental Chroma</Navbar.Brand>
     <Nav className="ms-auto">
-      <Nav.Link >Home</Nav.Link>
+      <Nav.Link><Link to="/">Home</Link></Nav.Link>
       <Nav.Link >Schedule Appoinment</Nav.Link>
    <Nav.Link ><Link to="/fordoctors">For Doctors</Link></Nav.Link>
       <Nav.Link >Community</Nav.Link>
