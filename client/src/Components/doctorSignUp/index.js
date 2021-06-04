@@ -27,7 +27,7 @@ function DoctorSignUp() {
         </Form.Group>
         <Form.Group controlId="formGroupPassword">
           <Form.Label>Specialization</Form.Label>
-          <Form.Control type="text" placeholder="Password" />
+          <Form.Control type="text" placeholder="Specialization" />
         </Form.Group>
         <Button className="signup-btn" type="submit" variant="outline-primary">Signup</Button>
       </Form>
