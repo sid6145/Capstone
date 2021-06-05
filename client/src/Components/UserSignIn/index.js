@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DoctorSignIn() {
+export default function UserSignIn() {
   const classes = useStyles();
 
   return (
@@ -43,7 +44,7 @@ export default function DoctorSignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-         Doctors Sign in
+          User Sign in
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -82,16 +83,15 @@ export default function DoctorSignIn() {
             Sign In
           </Button>
           <Grid container>
-            
             <Grid item sm>
-              <Link to="/doctorssignup" style={{textAlign:"center"}}>
+              <Link to="/userssignup">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      
+     
     </Container>
   );
 }

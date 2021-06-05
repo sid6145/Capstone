@@ -1,11 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -33,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function UserSignUp() {
   const classes = useStyles();
 
   return (
@@ -44,7 +42,7 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-         Doctors Sign up
+         User Sign up
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -94,16 +92,6 @@ export default function SignUp() {
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
-            <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="Specialization"
-                label="Specialization"
-                id="Specialization"
-              />
-            </Grid>
           </Grid>
           <Button
             type="submit"
@@ -116,14 +104,14 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item sm>
-              <Link to="/fordoctors">
+              <Link to="/userssignin">
                 Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      
+     
     </Container>
   );
 }

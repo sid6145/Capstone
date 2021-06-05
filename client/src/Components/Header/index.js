@@ -50,7 +50,10 @@ const useStyles = makeStyles((theme) => ({
           </Link>
 
           <Button className={classes.navBtn} color="inherit">Community</Button>
+          <Link className={classes.navLinks} to="/userssignin">
           <Button className={classes.navBtn} color="inherit">Signin</Button>
+          </Link>
+     
        
           
          
