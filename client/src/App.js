@@ -1,8 +1,10 @@
 import './App.css';
 import {BrowserRouter, Route} from 'react-router-dom'
-import DoctorSignIn from './Components/doctorSignIn';
-import DoctorSignUp from './Components/doctorSignUp';
+import DoctorSignIn from './Components/DoctorSignIn';
+import DoctorSignUp from './Components/DoctorSignUp';
 import Header from './Components/Header';
+import Home from './Components/Home';
+import Footer from './Components/Footer';
 
 
 function App() {
@@ -10,8 +12,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Header />
-      <Route path="/fordoctors" component={DoctorSignIn} />
-      <Route path="/doctorssignup" component={DoctorSignUp} />
+      <Route path="/" exact ><Home /></Route>
+      <Route path="/fordoctors"><DoctorSignIn /></Route>
+      <Route path="/doctorssignup"><DoctorSignUp /></Route>
+      <Footer />
       </BrowserRouter>
      
     </div>
