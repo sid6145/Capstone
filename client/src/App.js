@@ -7,6 +7,7 @@ import UserSignUp from './Components/UserSignup'
 import Header from './Components/Header';
 import Home from './Components/Home';
 import Footer from './Components/Footer';
+import Community from './Components/Community';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Route path="/doctorssignup"><DoctorSignUp /></Route>
       <Route path="/userssignin"><UserSignIn /></Route>
       <Route path="/userssignup"><UserSignUp /></Route>
+      <Route path="/community"><Community /></Route>
       <Footer />
       </BrowserRouter>
      

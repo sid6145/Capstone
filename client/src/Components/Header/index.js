@@ -49,9 +49,17 @@ const useStyles = makeStyles((theme) => ({
             </Button>
           </Link>
 
-          <Button className={classes.navBtn} color="inherit">Community</Button>
+          <Link className={classes.navLinks} to="/community">
+            <Button className={classes.navBtn} color="inherit">
+              Community
+            </Button>
+          </Link>
+      
+
           <Link className={classes.navLinks} to="/userssignin">
-          <Button className={classes.navBtn} color="inherit">Signin</Button>
+           <Button className={classes.navBtn} color="inherit">
+             Signin
+           </Button>
           </Link>
      
        

@@ -3,7 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link } from "react-router-dom"
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary">
@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 'auto',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+    position: "fixed",
+    bottom: 0,
+    width: "100%"
   },
 }));
 
