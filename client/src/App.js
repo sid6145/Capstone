@@ -21,7 +21,7 @@ function App() {
       <Route path="/userssignin"><UserSignIn /></Route>
       <Route path="/userssignup"><UserSignUp /></Route>
       <Route path="/community"><Community /></Route>
-      <Footer />
+      {/* <Footer /> */}
       </BrowserRouter>
      
     </div>
