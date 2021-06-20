@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import {
   makeStyles,
   Button,
@@ -37,7 +38,7 @@ const useStyles = makeStyles(() => ({
   },
 
   welcomeMessage: {
-    padding: 20,
+    padding: 20
   },
 
   media:{
@@ -71,9 +72,12 @@ function Home() {
           luctus tellus, scelerisque ullamcorper orci. Nulla id magna lorem.
           Integer aliquam, nisl congue dignissim tincidunt, purus elit placerat
           mauris, quis efficitur risus dui vel lorem. Duis a metus nisl.
+
+          <Link to="doctorslist">
           <Button className={classes.btn} color="primary" variant="contained">
             Book an appointment
           </Button>
+          </Link>
           <Button className={classes.btn} color="primary" variant="outlined">
             Check out our blogs
           </Button>
@@ -94,11 +98,10 @@ function Home() {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+                 Dr Linda Martin
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+               
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -114,11 +117,10 @@ function Home() {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+                  Dr Stephan Strange
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                 
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -134,11 +136,10 @@ function Home() {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+                 Dr James Murray
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+             
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -156,7 +157,7 @@ function Home() {
      </Box>
             
     <Typography variant="h4">Testamonials</Typography> 
-     <Grid container spacing={4} style={{padding:"50px 100px"}}>
+     <Grid container spacing={4} style={{padding:"100px 100px"}}>
        <Grid item sm>
        <CardMedia
                 className={classes.media}
@@ -165,11 +166,10 @@ function Home() {
         />
         <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+                 Elizabeth
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+               
                 </Typography>
         </CardContent>
        </Grid>
@@ -181,11 +181,10 @@ function Home() {
         />
         <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+                  Escanor
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                
                 </Typography>
         </CardContent>
        </Grid>
@@ -197,11 +196,10 @@ function Home() {
         />
         <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+                  Levi Akkerman
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                 
                 </Typography>
         </CardContent>
        </Grid>
@@ -215,11 +213,10 @@ function Home() {
         />
         <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
+                Bruce Wayne
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
+                
                 </Typography>
         </CardContent>
        </Grid>

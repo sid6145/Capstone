@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React, {useState} from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +37,31 @@ const useStyles = makeStyles((theme) => ({
 export default function UserSignIn() {
   const classes = useStyles();
 
+  const history = useHistory();
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleSignin = async () => {
+   axios.post("http://localhost:5000/api/user/login", {
+      email: email,
+      password: password,
+    })
+    .then((res) =>{
+      window.localStorage.setItem("userToken", res.data)
+      window.location.reload()
+    })
+    .catch((err) => console.log(err));
+  }
+
+  if(localStorage.userToken){
+    history.push("/dashboard")
+  }else{
+    history.push("/userssignin")
+  }
+
+  
+ 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -48,6 +74,7 @@ export default function UserSignIn() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            onChange={(e) => setEmail(e.target.value)}
             variant="outlined"
             margin="normal"
             required
@@ -59,6 +86,7 @@ export default function UserSignIn() {
             autoFocus
           />
           <TextField
+            onChange={(e) => setPassword(e.target.value)}
             variant="outlined"
             margin="normal"
             required
@@ -69,12 +97,13 @@ export default function UserSignIn() {
             id="password"
             autoComplete="current-password"
           />
+        
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
           <Button
-            type="submit"
+            onClick={handleSignin}
             fullWidth
             variant="contained"
             color="primary"

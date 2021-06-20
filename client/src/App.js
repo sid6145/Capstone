@@ -1,29 +1,75 @@
-import './App.css';
-import {BrowserRouter, Route} from 'react-router-dom'
-import DoctorSignIn from './Components/DoctorSignIn';
-import DoctorSignUp from './Components/DoctorSignUp';
-import UserSignIn from './Components/UserSignIn';
-import UserSignUp from './Components/UserSignup'
-import Header from './Components/Header';
-import Home from './Components/Home';
-import Footer from './Components/Footer';
-import Community from './Components/Community';
-
+import "./App.css";
+import { BrowserRouter, Redirect, Route } from "react-router-dom";
+import DoctorSignIn from "./Components/DoctorSignIn";
+import DoctorSignUp from "./Components/DoctorSignUp";
+import UserSignIn from "./Components/UserSignIn";
+import UserSignUp from "./Components/UserSignup";
+import Header from "./Components/Header";
+import Home from "./Components/Home";
+import Footer from "./Components/Footer";
+import Community from "./Components/Community";
+import DoctorsList from "./Components/DoctorsList";
+import DoctorDashboard from "./Components/DoctorDashBoard";
+import Dashboard from "./Components/UserDashBoard";
+import Form from "./Components/form";
+import DocProfile from "./Components/DoctorDashBoard/profile";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Header />
-      <Route path="/" exact ><Home /></Route>
-      <Route path="/fordoctors"><DoctorSignIn /></Route>
-      <Route path="/doctorssignup"><DoctorSignUp /></Route>
-      <Route path="/userssignin"><UserSignIn /></Route>
-      <Route path="/userssignup"><UserSignUp /></Route>
-      <Route path="/community"><Community /></Route>
-      {/* <Footer /> */}
+        <Header />
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/doctorssignin">
+          <DoctorSignIn />
+        </Route>
+        <Route path="/doctorssignup">
+          <DoctorSignUp />
+        </Route>
+        <Route path="/userssignin">
+          <UserSignIn />
+        </Route>
+        <Route path="/userssignup">
+          <UserSignUp />
+        </Route>
+        <Route path="/community">
+          <Community />
+        </Route>
+        <Route path="/doctorslist">
+          <DoctorsList />
+        </Route>
+
+        {localStorage.docToken ? (
+          <Route path="/doctordashboard">
+            <DoctorDashboard />
+          </Route>
+        ) : (
+          <Redirect to="/doctorssignin" />
+        )}
+
+        {localStorage.docToken ? (
+          <Route path="/docprofile">
+            <DocProfile/>
+          </Route>
+        ) : (
+          <Redirect to="/doctorssignin" />
+        )}
+
+        {localStorage.userToken ? (
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+        ) : (
+          <Redirect to="/userssignin" />
+        )}
+
+        <Route path="/form">
+          <Form />
+        </Route>
+        {/* <Footer /> */}
       </BrowserRouter>
-     
     </div>
   );
 }

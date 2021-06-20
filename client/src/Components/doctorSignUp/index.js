@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +35,30 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [specialization, setSpecialization] = useState("")
+
+  const history = useHistory();
+ 
+  const handleSignin = () => {
+    axios.post("http://localhost:5000/api/doctor/register", {
+      name: name,
+      email: email,
+      password: password,
+      specialization: specialization
+    })
+    .then((res) =>{
+      if(res){
+      alert("signup successful");
+      history.push("/doctorssignin")   
+      }   
+    })
+    .catch((err) => alert(err))
+  }
+
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -47,43 +70,39 @@ export default function SignUp() {
          Doctors Sign up
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+         <Grid container >
+            <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                autoComplete="name"
+                name="Name"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="Name"
+                label="Name"
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
+               
                 autoComplete="email"
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
@@ -91,22 +110,26 @@ export default function SignUp() {
                 label="Password"
                 type="password"
                 id="password"
+               
                 autoComplete="current-password"
               />
             </Grid>
             <Grid item xs={12}>
             <TextField
+                value={specialization}
+                onChange={(e) => setSpecialization(e.target.value)}
                 variant="outlined"
                 required
                 fullWidth
                 name="Specialization"
                 label="Specialization"
                 id="Specialization"
+              
               />
             </Grid>
           </Grid>
           <Button
-            type="submit"
+            onClick={handleSignin}
             fullWidth
             variant="contained"
             color="primary"

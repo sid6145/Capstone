@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useHistory } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,6 +36,29 @@ const useStyles = makeStyles((theme) => ({
 export default function DoctorSignIn() {
   const classes = useStyles();
 
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const history = useHistory();
+
+  const handleSignin = () => {
+    axios.post("http://localhost:5000/api/doctor/login", {
+      email:email,
+      password: password
+    })
+    .then((res) => {
+        window.localStorage.setItem("docToken", res.data)
+        window.location.reload()
+    })
+    .catch((err) => console.log(err))
+  }
+
+  if(localStorage.docToken){
+    history.push("/doctordashboard")
+  }else{
+    history.push("/doctorssignin")
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -47,6 +71,8 @@ export default function DoctorSignIn() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
             variant="outlined"
             margin="normal"
             required
@@ -58,6 +84,8 @@ export default function DoctorSignIn() {
             autoFocus
           />
           <TextField
+             onChange={(e) => setPassword(e.target.value)}
+            value={password}
             variant="outlined"
             margin="normal"
             required
@@ -73,7 +101,7 @@ export default function DoctorSignIn() {
             label="Remember me"
           />
           <Button
-            type="submit"
+            onClick={handleSignin}
             fullWidth
             variant="contained"
             color="primary"
