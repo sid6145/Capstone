@@ -5,14 +5,15 @@ const verify = require('./verifyToken')
 
 
 
+
+
 router.post("/", verify, async (req, res) => {
     const appointment = new Appointment({
         name: req.body.name,
         email: req.body.email,
         date: req.body.date
     })
-
-    
+   
         const savedAppointment = await appointment.save()
         const doc = await Doctor.findById({_id:req.user._id})
         doc.appointments.push(savedAppointment._id)

@@ -3,7 +3,20 @@ const Doctor = require('../models/DocAuth');
 const {doctorRegisterValidation, doctorLoginValidation} = require('../validation')
 const verify = require('../routes/verifyToken')
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const multer = require('multer')
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, "../client/public/uploads/");
+    },
+    filename: (req, file, callback) => {
+        callback(null, file.originalname);
+    }
+})
+
+const upload = multer({storage: storage});
 
 
 
@@ -13,10 +26,10 @@ router.get("/profile", verify, async(req, res) => {
    res.json(profile)
 })
 
-router.put("/profile", verify, async(req, res) => {
+router.put("/profile" ,[verify, upload.single("docImage")], async(req, res) => {
     const _id = req.user._id
     try{
-   const profile = await Doctor.findOneAndUpdate({_id:_id},{image: req.body.image} )
+   const profile = await Doctor.findOneAndUpdate({_id:_id},{docImage: req.file.originalname} )
     res.send(profile)
     }
     catch(err){
@@ -53,7 +66,7 @@ router.post("/register", async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         specialization: req.body.specialization,
-        image: "https://via.placeholder.com/150",
+        docImage: "https://via.placeholder.com/150",
         password: hashedPassword
     });
     try{

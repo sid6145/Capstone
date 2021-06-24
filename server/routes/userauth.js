@@ -1,8 +1,40 @@
 const router = require('express').Router();
 const User = require('../models/UserAuth');
 const {userRegisterValidation, userLoginValidation} = require('../validation')
+const verify = require('./verifyToken')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const multer = require('multer')
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, "../client/public/uploads/");
+    },
+    filename: (req, file, callback) => {
+        callback(null, file.originalname);
+    }
+})
+
+const upload = multer({storage: storage});
+
+
+router.get("/profile",verify ,async (req, res) => {
+    const userProfile = await User.findById({_id:req.user._id})
+    res.json(userProfile)
+
+})
+
+router.put("/profile", [verify, upload.single("userImage")], async(req, res) => {
+    const _id = req.user._id
+    try{
+   const userProfile = await User.findOneAndUpdate({_id:_id},{userImage: req.file.originalname} )
+    res.send(userProfile)
+    }
+    catch(err){
+        console.log(err)
+    }
+})
 
 
 

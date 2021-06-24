@@ -5,10 +5,13 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Discription:{
+    description:{
         type: String
-    }
 
+    }, 
+    postImage:{
+        type: String
+    },
 
 })
 

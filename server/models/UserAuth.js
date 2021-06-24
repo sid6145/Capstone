@@ -10,11 +10,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    userImage:{
+        type: String
+    },
     password: {
         type: String,
         required: true,
         min: 6
     },
+    activities:[{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Activity'
+    }],
+  
+
 });
 
 module.exports = mongoose.model('User', userSchema);
